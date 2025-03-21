@@ -17,6 +17,7 @@ import { images } from "@/constants/images";
 
 import SearchBar from "@/components/SearchBar";
 import MovieCard from "@/components/MovieCard";
+import TrendingCard from "@/components/TrendingCard";
 
 const Index = () => {
   const router = useRouter();
@@ -59,9 +60,7 @@ const Index = () => {
         ) : (
           <View className="flex-1 mt-5">
             <SearchBar
-              onPress={() => {
-                router.push("/search");
-              }}
+              onPress={() => router.push("/search")}
               placeholder="Search for a movie"
             />
 
@@ -75,6 +74,7 @@ const Index = () => {
                   showsHorizontalScrollIndicator={false}
                   className="mb-4 mt-3"
                   data={trendingMovies}
+                  ItemSeparatorComponent={() => <View className="w-4" />}
                   contentContainerStyle={{
                     gap: 26,
                   }}
@@ -82,7 +82,6 @@ const Index = () => {
                     <TrendingCard movie={item} index={index} />
                   )}
                   keyExtractor={(item) => item.movie_id.toString()}
-                  ItemSeparatorComponent={() => <View className="w-4" />}
                 />
               </View>
             )}
